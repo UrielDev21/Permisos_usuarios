@@ -9,51 +9,17 @@ create table usuarios
     rfc VARCHAR(13)
 );
 
--- Modificacion a la tabla de usuarios --
-alter table usuarios
-add unique (rfc); 
-
--- Verificar que se haya hecho el cambio en la tabla usuarios --
-describe usuarios; 
-
--- Tabla de permisos --
+-- Tabla permisos -- 
 create table permisos
 (
-    id_permiso int PRIMARY key auto_increment,
-    tipo_permiso varchar(100),
+    id_permiso int PRIMARY key auto_increment, 
     fk_id_usuario int, 
+    tipo_permiso varchar(100), 
+    user varchar(100), 
+    pass varchar(255), 
     foreign key (fk_id_usuario) references usuarios (id_usuario)
 ); 
-
--- Modificaciones a la tabla de permisos --
-ALTER table permisos
-add column user varchar(100);
-
-alter table permisos 
-add column pass varchar(20);
-
-ALTER table permisos
-modify column pass varchar(255); 
-
-ALTER TABLE permisos DROP FOREIGN KEY permisos_ibfk_1;
-
-alter table permisos
-drop column fk_id_usuario;
-
-alter table permisos 
-add column fk_rfc varchar(13); 
-
-ALTER table permisos 
-add foreign key (fk_rfc) references usuarios (rfc); 
-
--- Verificar que las modificaciones si se hicieron --
-describe permisos; 
-
-/* Hacemos un insercion de datos para poder usar las dos tablas para 
-ver el funcionamientod*/
-call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260803EM5');  
-insert into permisos values (null, 'Administrador', 'jose11', sha1('1234'), 'GGTN260803EM5');
-SELECT * from permisos; 
+DESCRIBE permisos; 
 
 -- Tabla de refacciones --
 create table refacciones
@@ -92,80 +58,77 @@ CREATE procedure p_insertar_usuarios
     in _pass varchar(255)
 )
 begin 
+
+    declare nuevo_id_usuario int; 
+
     insert into usuarios (nombre, apellidop, apellidom, fecha_nacimiento, rfc) values 
     (_nombre, _apellidop, _apellidom, _fecha_nacimiento, _rfc);
-    
-    insert into permisos(tipo_permiso, user, pass, fk_rfc) values 
-    (_tipo_permiso, _user, _pass, _rfc); 
+
+    set nuevo_id_usuario = last_insert_id(); 
+
+    insert into permisos(fk_id_usuario, tipo_permiso, user, pass) values 
+    (nuevo_id_usuario, _tipo_permiso, _user, _pass); 
 end;
 
 call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260803EM1', 'Administrador', 'jose11', sha1('1234'));  
 select * from usuarios; 
 SELECT * from permisos; 
 
+
 -- Procedimiento almacenado para modificar usuarios --
 drop procedure if exists p_modificar_usuarios; 
-create procedure p_modificar_usuarios
+CREATE procedure p_modificar_usuarios
 (
-    in _id_usuario int, 
-    in _nombre varchar(255),
-    in _apellidop varchar(255),
+    in _id_usuario int,
+    in _nombre varchar(255), 
+    in _apellidop varchar(255), 
     in _apellidom varchar(255), 
-    in _fecha_nacimiento DATE,
+    in _fecha_nacimiento date, 
+    in _rfc varchar(13), 
     in _tipo_permiso varchar(100), 
     in _user varchar(100), 
-    in _pass varchar(255),
-    in _rfc_actual VARCHAR(13), 
-    in _rfc_nuevo varchar(13) 
+    in _pass varchar(255)
 )
-begin
-    update usuarios set nombre = _nombre, apellidop = _apellidop, apellidom = _apellidom, fecha_nacimiento = _fecha_nacimiento, rfc = _rfc_nuevo
+begin 
+    update usuarios set nombre = _nombre, apellidop = _apellidop, apellidom = _apellidom, fecha_nacimiento = _fecha_nacimiento, rfc = _rfc
     where id_usuario = _id_usuario;
-        -- MODIFICACION --
-    UPDATE permisos set fk_rfc = _rfc_nuevo
-    where fk_rfc = _rfc_actual;
-end; 
 
-call p_modificar_usuarios(7, 'Jose', 'Perez', 'Prado', '2000-06-11', 'Empleado', 'jose11', sha1('12345'), 'GGTN260803EM1', 'GGTN260803EE1'); 
+    update permisos set tipo_permiso = _tipo_permiso, user = _user, pass = _pass
+    where fk_id_usuario = _id_usuario; 
+end;  
+call p_modificar_usuarios(1, 'Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260803EM1', 'Empleado', 'jose12', sha1('12345')); 
 
-
-call p_modificar_usuarios(8, 'Jose', 'Perez', 'Prado', '2000-06-11', 'Administrador', 'jose11', sha1('12345'), 'GGTN260803EM1', 'GGTN260803EN2'); 
+describe usuarios; 
+DESCRIBE permisos; 
+ 
 SELECT * FROM usuarios;
-SELECT * from permisos;
+SELECT * from permisos; 
 
-SELECT * FROM permisos WHERE fk_rfc = 'GGTN260803EM1';
+UPDATE permisos set tipo_permiso = 'Administrador', user = 'jose11', pass = sha1('1234'), fk_rfc = 'GGTN26080QQQ'
+WHERE id_permiso = 1; 
+
+update usuarios set nombre = 'Jose', apellidop = 'Perez', apellidom = 'Prado', fecha_nacimiento = '2000-06-11', rfc = 'GGTN26080QQQ'
+where id_usuario = 8; 
+
+SET FOREIGN_KEY_CHECKS = 0;
+
 
 -- Procedimiento almacenado para eliminar usuarios --
---MODIFICACIONES IMPORTANTES AL PROCEDIMIENTO --
 DROP procedure if exists p_eliminar_usuarios_permisos;
 CREATE procedure p_eliminar_usuarios_permisos
 (
-    in _id_usuario int,
-    in _id_permiso int
+    in _id_usuario int
+
 )
 begin
     delete from permisos
-    where id_permiso = _id_permiso; 
+    where fk_id_usuario = _id_usuario;
 
     delete from usuarios
     where id_usuario = _id_usuario; 
 end; 
 
--- Prueba de funcionamiento --
-call p_eliminar_usuarios_permisos(6, null); 
-
-
-
--- NOTA IMPORTANTE --
-
-/*Para poder eliminar un registro de la tabla de usuarios, se 
-tiene que eliminar primero de la tabla de permisos
-ese orden es muy importante*/
-delete from permisos
-where id_permiso = 1; 
-call p_eliminar_usuarios(2); 
-select * from usuarios;
-SELECT * from permisos; 
+call p_eliminar_usuarios_permisos(1); 
 
 -- Procedimiento almacenado para insertar en la tabla de refacciones --
 create procedure p_insertar_refacciones
