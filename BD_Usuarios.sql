@@ -70,7 +70,7 @@ begin
     (nuevo_id_usuario, _tipo_permiso, _user, _pass); 
 end;
 
-call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260803EM1', 'Administrador', 'jose11', sha1('1234'));  
+call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260813EM2', 'Administrador', 'jose11', sha1('1234'));  
 select * from usuarios; 
 SELECT * from permisos; 
 
