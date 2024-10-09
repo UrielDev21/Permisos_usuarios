@@ -81,7 +81,6 @@ select * from usuarios;
 SELECT * from permisos; 
 
 
-
 -- Procedimiento almacenado para modificar usuarios --
 drop procedure if exists p_modificar_usuarios; 
 CREATE procedure p_modificar_usuarios
@@ -294,10 +293,6 @@ call p_modificar_herramienta('SSAHDFLJ1', 'Perica', '2 pulgadas', 'TRUPER', 'Per
 
 call p_eliminar_herramienta('SSAHDFLJ1');
 select * from taller;
-
-
-
-
 =======
 call p_eliminar_herramienta('134208967'); 
 >>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
