@@ -1,0 +1,14 @@
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\bin\Debug\Usuarios.exe.config
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\bin\Debug\Usuarios.exe
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\bin\Debug\Usuarios.pdb
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.csproj.AssemblyReference.cache
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.AgregarHerramientas.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.AgregarRefacciones.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.AgregarUsuarios.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.BusquedaHerramientas.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.InicioSesion.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.Properties.Resources.resources
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.csproj.GenerateResource.cache
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.csproj.CoreCompileInputs.cache
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.exe
+C:\Users\luisg\Desktop\Permisos_usuarios-main\Usuarios\obj\Debug\Usuarios.pdb

@@ -14,12 +14,14 @@ create table permisos
 (
     id_permiso int PRIMARY key auto_increment, 
     fk_id_usuario int, 
-    tipo_permiso varchar(100), 
+    tipo_permiso set('Lectura', 'Escritura', 'Modificacion', 'Eliminacion'),
+    permiso_formulario set('Agregar_Usuarios', 'Ver_Usuarios', 'Agregar_refacciones', 'Ver_refacciones', 'Agregar_herramienta', 'Ver_herramienta'),
     user varchar(100), 
     pass varchar(255), 
     foreign key (fk_id_usuario) references usuarios (id_usuario)
 ); 
-DESCRIBE permisos; 
+DESCRIBE permisos;
+
 
 -- Tabla de refacciones --
 create table refacciones
@@ -29,6 +31,7 @@ create table refacciones
     descripcion varchar(255),
     marca varchar(255)
 );
+
 -- Tabla taller --
 CREATE table taller
 (
@@ -38,7 +41,14 @@ CREATE table taller
     marca varchar(255),
     descripcion varchar(255)
 );
+<<<<<<< HEAD
 show tables;
+=======
+
+-- MODIFICACION --
+ALTER table taller
+modify column medida varchar(10); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para insertar usuarios --
 -- Otras modificaciones --
@@ -50,7 +60,8 @@ CREATE procedure p_insertar_usuarios
     in _apellidom varchar(255), 
     in _fecha_nacimiento DATE,
     in _rfc VARCHAR(13),
-    in _tipo_permiso varchar(100), 
+    in _tipo_permiso set('Lectura', 'Escritura', 'Modificacion', 'Eliminacion'),
+    in _permiso_formulario set('Agregar_Usuarios', 'Ver_Usuarios', 'Agregar_refacciones', 'Ver_refacciones', 'Agregar_herramienta', 'Ver_herramienta'),
     in _user varchar(100), 
     in _pass varchar(255)
 )
@@ -63,12 +74,19 @@ begin
 
     set nuevo_id_usuario = last_insert_id(); 
 
-    insert into permisos(fk_id_usuario, tipo_permiso, user, pass) values 
-    (nuevo_id_usuario, _tipo_permiso, _user, _pass); 
+    insert into permisos(fk_id_usuario, tipo_permiso, permiso_formulario, user, pass) values 
+    (nuevo_id_usuario, _tipo_permiso, _permiso_formulario, _user, _pass); 
 end;
 
+<<<<<<< HEAD
+=======
+call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260813EM2', 'Escritura,Lectura', 'Agregar_herramienta,Ver_herramienta','jose11', sha1('1234'));  
+
+
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 select * from usuarios; 
 SELECT * from permisos; 
+
 
 
 -- Procedimiento almacenado para modificar usuarios --
@@ -92,6 +110,25 @@ begin
     update permisos set tipo_permiso = _tipo_permiso, user = _user, pass = _pass
     where fk_id_usuario = _id_usuario; 
 end;  
+<<<<<<< HEAD
+=======
+call p_modificar_usuarios(1, 'Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260803EM1', 'Empleado', 'jose12', sha1('12345')); 
+
+describe usuarios; 
+DESCRIBE permisos; 
+ 
+SELECT * FROM usuarios;
+SELECT * from permisos; 
+
+UPDATE permisos set tipo_permiso = 'Administrador', user = 'jose11', pass = sha1('1234'), fk_rfc = 'GGTN26080QQQ'
+WHERE id_permiso = 1; 
+
+update usuarios set nombre = 'Jose', apellidop = 'Perez', apellidom = 'Prado', fecha_nacimiento = '2000-06-11', rfc = 'GGTN26080QQQ'
+where id_usuario = 8; 
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para eliminar usuarios --
 DROP procedure if exists p_eliminar_usuarios_permisos;
@@ -108,6 +145,10 @@ begin
     where id_usuario = _id_usuario; 
 end; 
 
+<<<<<<< HEAD
+=======
+call p_eliminar_usuarios_permisos(1); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para insertar en la tabla de refacciones --
 create procedure p_insertar_refacciones
@@ -122,6 +163,10 @@ begin
     (_codigo_barras, _nombre, _descripcion, _marca); 
 end; 
 
+<<<<<<< HEAD
+=======
+call p_insertar_refacciones('po3iu4djfhals', 'Bomba de agua', 'Bomba de agua para sedan', 'Toyota'); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para modificar en la tabla de refacciones -- 
 CREATE procedure p_modificar_refacciones
@@ -136,6 +181,11 @@ begin
     where codigo_barras = _codigo_barras; 
 end; 
 
+<<<<<<< HEAD
+=======
+call p_modificar_refacciones('po3iu4djfhals', 'Bomba de gasolina', 'Una bomba de gasolita para una Pick-UP', 'Ford'); 
+
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 SELECT * from refacciones; 
 
 -- Procedimiento almacenado para eliminar refacciones en la tabla --
@@ -149,6 +199,10 @@ begin
     where codigo_barras = _codigo_barras; 
 end; 
 
+<<<<<<< HEAD
+=======
+call p_eliminar_refacciones('po3iu4djfhals'); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para ingresar herramientas en la tabla --
 drop procedure if exists p_insertar_herramienta; 
@@ -165,6 +219,11 @@ begin
     (_Codigo_herramienta, _nombre, _medida, _marca, _descripcion);
 end; 
 
+<<<<<<< HEAD
+=======
+call p_insertar_herramienta('134208967', 'Matraca', '3/4', 'Craftman', 'Matraca perrona'); 
+
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 SELECT * from taller; 
 
 -- Procedimiento almacenado para modificar herramientas en la tabla --
@@ -182,6 +241,10 @@ begin
     where Codigo_herramienta = _Codigo_herramienta;
 end;  
 
+<<<<<<< HEAD
+=======
+call p_modificar_herramienta('134208967', 'Taladro', '10pul', 'Makita', 'Taladro perron');
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 
 -- Procedimiento almacenado para eliminar herramientas de la tabla --
 CREATE procedure p_eliminar_herramienta
@@ -193,6 +256,7 @@ begin
     where Codigo_herramienta = _Codigo_herramienta;
 end;
 
+<<<<<<< HEAD
 -- Vista para usuarios --
 create VIEW v_vista_usuarios AS
 select u.nombre, u.apellidop, u.apellidom, u.fecha_nacimiento, u.rfc, p.tipo_permiso, p.user, p.pass from usuarios u
@@ -241,3 +305,6 @@ select * from taller;
 
 
 
+=======
+call p_eliminar_herramienta('134208967'); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
