@@ -77,13 +77,6 @@ begin
     insert into permisos(fk_id_usuario, tipo_permiso, permiso_formulario, user, pass) values 
     (nuevo_id_usuario, _tipo_permiso, _permiso_formulario, _user, _pass); 
 end;
-
-<<<<<<< HEAD
-=======
-call p_insertar_usuarios('Jose', 'Perez', 'Prado', '2000-06-11', 'GGTN260813EM2', 'Escritura,Lectura', 'Agregar_herramienta,Ver_herramienta','jose11', sha1('1234'));  
-
-
->>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
 select * from usuarios; 
 SELECT * from permisos; 
 
