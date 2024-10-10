@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Conexion;
+
 namespace Acceso_datos
 {
     public class Funciones

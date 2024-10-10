@@ -185,5 +185,11 @@
   <ItemGroup>
     <None Include="Resources\images %287%29.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Manejador\Manejador.csproj">
+      <Project>{63db514a-5f27-4d0c-ae8f-704a465578bb}</Project>
+      <Name>Manejador</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
