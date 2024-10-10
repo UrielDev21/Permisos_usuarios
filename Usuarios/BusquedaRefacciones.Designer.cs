@@ -30,10 +30,10 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dtgvTabla = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTabla)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -57,15 +57,16 @@
             this.label5.TabIndex = 37;
             this.label5.Text = "Busqueda de refacciones";
             // 
-            // dataGridView1
+            // dtgvTabla
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 197);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1039, 391);
-            this.dataGridView1.TabIndex = 36;
+            this.dtgvTabla.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgvTabla.Location = new System.Drawing.Point(17, 197);
+            this.dtgvTabla.Name = "dtgvTabla";
+            this.dtgvTabla.RowHeadersWidth = 51;
+            this.dtgvTabla.RowTemplate.Height = 24;
+            this.dtgvTabla.Size = new System.Drawing.Size(1039, 391);
+            this.dtgvTabla.TabIndex = 36;
+            this.dtgvTabla.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvTabla_CellContentClick);
             // 
             // label1
             // 
@@ -76,13 +77,14 @@
             this.label1.TabIndex = 35;
             this.label1.Text = "Busqueda:";
             // 
-            // textBox1
+            // txtBuscar
             // 
-            this.textBox1.Location = new System.Drawing.Point(153, 112);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(875, 62);
-            this.textBox1.TabIndex = 34;
+            this.txtBuscar.Location = new System.Drawing.Point(153, 112);
+            this.txtBuscar.Multiline = true;
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(875, 62);
+            this.txtBuscar.TabIndex = 34;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // BusquedaRefacciones
             // 
@@ -92,15 +94,15 @@
             this.ClientSize = new System.Drawing.Size(1068, 600);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dtgvTabla);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtBuscar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "BusquedaRefacciones";
             this.Text = "BusquedaRefacciones";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvTabla)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,8 +112,8 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dtgvTabla;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtBuscar;
     }
 }
