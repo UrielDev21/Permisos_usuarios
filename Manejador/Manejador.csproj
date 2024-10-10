@@ -4,7 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+<<<<<<< HEAD
+    <ProjectGuid>{8C2C8B24-DC4D-4969-B1EA-45A0FEE61AB4}</ProjectGuid>
+=======
     <ProjectGuid>{63DB514A-5F27-4D0C-AE8F-704A465578BB}</ProjectGuid>
+>>>>>>> b874a14a9dbade13860b14e9a9e0caff73826e4b
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Manejador</RootNamespace>
@@ -43,6 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Compile Include="ManejadorRefacciones.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acceso\Acceso.csproj">
+      <Project>{9db8e986-4695-4f34-a951-c73f1601193b}</Project>
+      <Name>Acceso</Name>
+=======
     <Compile Include="Manejador_taller.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -50,6 +63,7 @@
     <ProjectReference Include="..\Acceso_datos\Acceso_datos.csproj">
       <Project>{95329804-f4df-41ac-a224-cddf23b3923d}</Project>
       <Name>Acceso_datos</Name>
+>>>>>>> b874a14a9dbade13860b14e9a9e0caff73826e4b
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
