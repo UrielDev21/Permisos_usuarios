@@ -187,7 +187,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Manejador\Manejador.csproj">
+<<<<<<< HEAD
       <Project>{8c2c8b24-dc4d-4969-b1ea-45a0fee61ab4}</Project>
+=======
+      <Project>{63db514a-5f27-4d0c-ae8f-704a465578bb}</Project>
+>>>>>>> b874a14a9dbade13860b14e9a9e0caff73826e4b
       <Name>Manejador</Name>
     </ProjectReference>
   </ItemGroup>
