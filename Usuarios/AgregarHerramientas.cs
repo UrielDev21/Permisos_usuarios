@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,14 @@ namespace Usuarios
         {
             InitializeComponent();
             mt = new Manejador_taller();
+            if(BusquedaHerramientas.codigo_herramienta.Length > 0)
+            {
+                txtCodigo_Herramientas.Text = BusquedaHerramientas.codigo_herramienta;
+                txtDescripcion.Text = BusquedaHerramientas.descripcion;
+                txtMarca.Text = BusquedaHerramientas.marca; 
+                txtMedida.Text = BusquedaHerramientas.medida;
+                txtNombre.Text = BusquedaHerramientas.nombre; 
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -33,7 +42,16 @@ namespace Usuarios
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            mt.GuardarHerramientas(txtCodigo_Herramientas, txtNombre, txtMedida, txtMarca, txtDescripcion);
+            if(BusquedaHerramientas.codigo_herramienta.Length > 0)
+            {
+                mt.ModificarHerramientas(txtCodigo_Herramientas, txtNombre, txtMedida, txtMarca, txtDescripcion); 
+            }
+            else
+            {
+                mt.GuardarHerramientas(txtCodigo_Herramientas, txtNombre, txtMedida, txtMarca, txtDescripcion);
+            }
+            Close();
         }
+            
     }
 }
