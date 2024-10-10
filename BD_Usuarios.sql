@@ -68,11 +68,18 @@ begin
     insert into permisos(fk_id_usuario, tipo_permiso, permiso_formulario) values 
     (nuevo_id_usuario, _tipo_permiso, _permiso_formulario); 
 end;
+<<<<<<< HEAD
 
 call p_insertar_usuarios('Juan', 'Perez', 'Gomez', '1990-01-01', 'SJD1231ASVLDF', 'juan90', sha1('1234'), 'Lectura,Escritura', 'Ver_refacciones,Agregar_refacciones');
 select * from usuarios; 
 SELECT * from permisos; 
 
+=======
+select * from usuarios; 
+SELECT * from permisos; 
+
+
+>>>>>>> e4f73130967f9c46c3340d88c32d108d5efeb86d
 -- Procedimiento almacenado para modificar usuarios --
 drop procedure if exists p_modificar_usuarios; 
 CREATE procedure p_modificar_usuarios
@@ -240,4 +247,10 @@ call p_modificar_herramienta('SSAHDFLJ1', 'Perica', '2 pulgadas', 'TRUPER', 'Per
 
 call p_eliminar_herramienta('SSAHDFLJ1');
 select * from taller;
+<<<<<<< HEAD
 
+=======
+=======
+call p_eliminar_herramienta('134208967'); 
+>>>>>>> 3c7f75c7e1b7ca9c3a104f7e29bb1863f5e45d0e
+>>>>>>> e4f73130967f9c46c3340d88c32d108d5efeb86d
