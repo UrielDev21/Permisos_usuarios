@@ -28,6 +28,16 @@ namespace Manejador
                 "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Information); 
         }
 
+        public void ELiminar_herramientas(string Codigo_herramienta, string dato)
+        {
+            DialogResult rs = MessageBox.Show($"Estas seguro de eliminar {dato}", "ATENCION", MessageBoxButtons.YesNo, MessageBoxIcon.Warning); 
+            if(rs == DialogResult.Yes)
+            {
+                f.Borrar($"call p_eliminar_herramienta('{Codigo_herramienta}')");
+                MessageBox.Show("Registro eliminado", "ATENCION", MessageBoxButtons.OK, MessageBoxIcon.Information); 
+            }
+        }
+
         // Metodo para crear un boton dentro del datagridview
         DataGridViewButtonColumn Boton(string texto, Color fondo)
         {
@@ -44,6 +54,8 @@ namespace Manejador
             tabla.Columns.Clear();
             tabla.DataSource = f.Mostrar($"select * from v_vista_taller where nombre like '%{filtro}%'", "taller").Tables[0];
             tabla.Columns.Add(Boton("Modificar", Color.Green));
+            // Nuevo boton eliminar
+            tabla.Columns.Add(Boton("Eliminar", Color.Red)); 
             tabla.AutoResizeColumns(); 
             tabla.AutoResizeRows(); 
         }

@@ -61,6 +61,13 @@ namespace Usuarios
                         dtgvTaller.Visible = false;
 
                     }break;
+                case 6:
+                    {
+                        codigo_herramienta = dtgvTaller.Rows[fila].Cells[0].Value.ToString();
+                        mt.ELiminar_herramientas(codigo_herramienta, dtgvTaller.Rows[fila].Cells[1].Value.ToString());
+                        dtgvTaller.Visible = false; 
+
+                    }break; 
             }
         }
     }
