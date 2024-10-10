@@ -32,7 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Conexion">
-      <HintPath>..\..\..\..\source\repos\Conexion\Conexion\bin\Debug\Conexion.dll</HintPath>
+      <HintPath>..\..\..\..\..\source\repos\Conexion\Conexion\bin\Debug\Conexion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
